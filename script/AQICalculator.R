@@ -28,7 +28,11 @@ AqiCalculator <- function(aqi.breakpoint, pollutant.name, concentration) {
 
 # return the list of api of a list of concentration
 # Note: since when we use lapply, the filter inside AqiCalculator can produce error
+<<<<<<< HEAD
 #       and therefore iteraterion in this program is necessary.
+=======
+#       and therefore we have to use iteraterion.
+>>>>>>> 10c9d9804041fe50a68fde4aa0c1ec7e78d4df2b
 AqiCalculatorWithList <- function(aqi.breakpoint, pollutant.name, list) {
   index <- 1
   result <- c(AqiCalculator(aqi.breakpoint, pollutant.name, list[1]))
