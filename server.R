@@ -24,7 +24,7 @@ shinyServer(function(input, output) {
     
     # Read the data 
     # Since we cannot upload file larger than 100 mb, and the data for California is greater than 100 mb
-    # we separate the data for California  in two smaller pieces
+    # we separate the data for California in two smaller pieces
     if(input$State == "California") {
       raw.data1 <- read.csv(paste0("data/Data Sorted By State/", input$State, "1's data.csv"), stringsAsFactors = FALSE)
       raw.data2 <- read.csv(paste0("data/Data Sorted By State/", input$State, "2's data.csv"), stringsAsFactors = FALSE)
@@ -47,7 +47,6 @@ shinyServer(function(input, output) {
     # set the color of each pollutant in the pie chart
     colors <- c('rgb(211,94,96)', 'rgb(128,133,133)', 'rgb(144,103,167)', 'rgb(171,104,87)')
     
-    
     # Make Pie chart
     m <- list(
       l = 50,
@@ -68,7 +67,6 @@ shinyServer(function(input, output) {
              showlegend = F,
              xaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE),
              yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE))
-    
   })
   
   output$scatter <- renderPlot({
@@ -94,8 +92,8 @@ shinyServer(function(input, output) {
     # Plot the scatter plot
     ggplot(data = filtered.data) + 
       geom_point(mapping = aes_string(x = get.x, y = get.y)) + 
-      labs(x = paste0(input$xAxis, " (", get.x.unit, ")"),
-           y = paste0(input$yAxis, " (", get.y.unit, ")"), 
+      labs(x = paste0("First pollutant : ", input$xAxis, " (", get.x.unit, ")"),
+           y = paste0("Second pollutant : ", input$yAxis, " (", get.y.unit, ")"), 
            title = paste0(input$xAxis, " against ", input$yAxis, " in ", input$Year.Scatter))
   })
   
@@ -119,7 +117,7 @@ shinyServer(function(input, output) {
                                        `CO AQI` >= `NO2 AQI` &   `CO AQI` >= `O3 AQI` & `CO AQI` >= `SO2 AQI`  ~ `CO AQI`))
     
     
-    # add the hover information of each state
+    # add the hover information of each state and states' name abbrivation
     air.data <- mutate(air.data, hover.info = paste(paste0("State : ", air.data$State), 
                                                     paste0("Overall AQI : ", air.data$`Overall AQI`),
                                                     paste0("NO2 AQI : ", air.data$`NO2 AQI`),

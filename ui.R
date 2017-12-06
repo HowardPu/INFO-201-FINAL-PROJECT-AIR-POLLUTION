@@ -1,7 +1,3 @@
-# In this user interactive web page, user can use the drop down selecting list to select the 
-# two charactor of the cereal that they want to see relationship on. We use the shiny library and the 
-# cereal data from INFO201 class to build this web page.
-
 library(shiny)
 library(plotly)
 
